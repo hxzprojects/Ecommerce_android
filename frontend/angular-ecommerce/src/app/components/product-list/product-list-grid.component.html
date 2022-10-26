@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- loop over collection of products -->
+                <div *ngFor="let p of products" class="col-md-3">
+                    <div class="product-box">
+                        <a routerLink="/products/{{p.id}}"><img src="{{p.imageUrl}}" class="image-responsive"></a>
+                        <a routerLink="/products/{{p.id}}"><h1>{{p.name}}</h1></a>
+                        
+                        
+                        <div class="price">{{p.unitPrice | currency : "TND"}}</div>
+
+                    </div>
+                </div>
+                <!--if products empty than display message -->
+                <div *ngIf="products?.length==0" class="alert alert-warning col-md-12" role="alert">
+                    <p>No products found.</p>
+
+                </div>
+            </div>
+            <!--begin pagination-->
+            <div class="footer-pagination">
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-9" style="padding: left 30%">
+                                <ngb-pagination [(page)]="thePageNumber"
+                                                [pageSize]="thePageSize"
+                                                [collectionSize]="theTotalElements"
+                                                (pageChange)="listProducts()">
+
+                                </ngb-pagination>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end pagination-->
+        </div>
+    </div>
+</div>
